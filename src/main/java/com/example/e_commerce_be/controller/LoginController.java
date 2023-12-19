@@ -1,6 +1,7 @@
 package com.example.e_commerce_be.controller;
 
 import com.example.e_commerce_be.config.jwt.JwtUtils;
+import com.example.e_commerce_be.dto.AccountToken;
 import com.example.e_commerce_be.entity.Account;
 import com.example.e_commerce_be.entity.ERole;
 import com.example.e_commerce_be.entity.Role;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -100,11 +102,33 @@ public class LoginController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+        Optional<Account> account = accountRepository.findByUsername(loginRequest.getUsername());
+        AccountToken accountToken = new AccountToken();
+        if (account != null) {
+            accountToken.setId(account.get().getId());
+            accountToken.setUsername(account.get().getUsername());
+            accountToken.setFirstname(account.get().getFirstname());
+            accountToken.setLastname(account.get().getLastname());
+            accountToken.setAddress(account.get().getAddress());
+            accountToken.setProvince(account.get().getProvince());
+            accountToken.setDistrict(account.get().getDistrict());
+            accountToken.setWard(account.get().getWard());
+            accountToken.setEmail(account.get().getEmail());
+            accountToken.setPhone(account.get().getPhone());
+            accountToken.setAvatar(account.get().getAvatar());
+            accountToken.setWallet(account.get().getWallet());
+            accountToken.setStatus(account.get().getStatus());
+            accountToken.setToken(jwt);
+            accountToken.setRoles(roles);
+            return ResponseEntity.ok(accountToken);
+
+        }
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles));
+
     }
     @PostMapping("/fail")
     public String checkUser(@RequestBody Account user) { // login fail
