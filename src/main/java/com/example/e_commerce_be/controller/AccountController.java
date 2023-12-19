@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/accounts")
-public class LoginController {
+public class AccountController {
     @Autowired
     AuthenticationManager authenticationManager;
 
