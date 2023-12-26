@@ -36,6 +36,7 @@ public class Account  {
     @Email(message = "Email không đúng định dạng")
     private String email;
     private String phone;
+    @Column(columnDefinition = "TEXT")
     private String avatar;
     private double wallet;
     private String status;

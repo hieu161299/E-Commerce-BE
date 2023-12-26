@@ -19,5 +19,5 @@ public class Review {
     private int rating;
     private LocalDate createAt;
     @ManyToOne
-    private OderDetail oderDetail;
+    private OderDetail oderDetail; // sua thnah product
 }

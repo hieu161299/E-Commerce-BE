@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "product")
 @Getter
@@ -19,9 +21,10 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
     private String status;
-    private int quantity;
     private String color; // mô tả màu sắc của sản phẩm
     private String gender; // sản phẩm dành cho nam hay nữ
+    private LocalDateTime create_at;
+    private LocalDateTime update_at;
     @ManyToOne
     private Category category;
 }

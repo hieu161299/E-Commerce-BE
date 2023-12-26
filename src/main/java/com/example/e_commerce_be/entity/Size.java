@@ -1,18 +1,22 @@
 package com.example.e_commerce_be.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "brand")
-@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
-public class Brand {
+@Getter
+public class Size {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @Column(columnDefinition = "TEXT")
-    private String image;
+    private int quantity;
+    @ManyToOne
+    private Product product;
 }
