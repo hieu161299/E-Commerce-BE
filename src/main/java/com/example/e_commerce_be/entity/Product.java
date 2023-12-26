@@ -27,4 +27,6 @@ public class Product {
     private LocalDateTime update_at;
     @ManyToOne
     private Category category;
+    @OneToOne
+    private Brand brand;
 }
