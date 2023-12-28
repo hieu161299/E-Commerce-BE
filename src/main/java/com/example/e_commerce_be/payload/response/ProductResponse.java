@@ -2,7 +2,6 @@ package com.example.e_commerce_be.payload.response;
 
 import com.example.e_commerce_be.entity.Category;
 import com.example.e_commerce_be.entity.Image;
-import com.example.e_commerce_be.entity.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +22,6 @@ public class ProductResponse {
     private String description;
     private String status;
     private String color;
-    private String gender;
     private Category category;
     private List<Image> imageList;
-    private List<Size> sizeList;
 }

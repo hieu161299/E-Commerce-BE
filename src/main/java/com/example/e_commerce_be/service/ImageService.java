@@ -5,5 +5,5 @@ import com.example.e_commerce_be.entity.Image;
 import java.util.List;
 
 public interface ImageService {
-    List<Image> findAllByProductId(int productId);
+    List<Image> findAllByProductDetail_Id(int productId);
 }

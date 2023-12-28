@@ -19,7 +19,7 @@ public class Image {
     @Column(columnDefinition = "TEXT")
     private String url;
     @ManyToOne
-    private Product product;
+    private ProductDetail productDetail;
 
     public Image(Integer id, String url) {
         this.id = id;

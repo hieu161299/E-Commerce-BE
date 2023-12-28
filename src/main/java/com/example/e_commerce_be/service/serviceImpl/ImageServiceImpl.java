@@ -12,7 +12,7 @@ public class ImageServiceImpl implements ImageService {
     @Autowired
     ImageRepository imageRepository;
     @Override
-    public List<Image> findAllByProductId(int productId) {
-        return imageRepository.findAllByProduct_Id(productId);
+    public List<Image> findAllByProductDetail_Id(int productId) {
+        return imageRepository.findAllByProductDetail_Id(productId);
     }
 }

@@ -10,13 +10,16 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    @Query(value = "select p.* from product p join category c on c.id = p.category_id" +
-            "  join brand b on b.id = p.brand_id" +
+    @Query(value = "select p.* from product p " +
+            " join product_detail pd on p.id = pd.product_id" +
+            " join category c on c.id = p.category_id" +
+            " join brand b on b.id = p.brand_id" +
+            " join color on pd.color_id = color.id" +
             " where (p.name like concat('%' , :productName , '%'))" +
             " and (p.price  between :minPrice and :maxPrice)\n" +
             " and (b.name like concat('%' , :brandName , '%'))" +
             " and (c.name like concat('%' , :categoryName , '%'))" +
-            " and(p.color like concat('%' , :color , '%'))" +
+            " and(color.name like concat('%' , :color , '%'))" +
             " group by p.id;" , nativeQuery = true)
     Page<Product> findAllByFilter(@Param("productName") String productName,
                                   @Param("minPrice") double minPrice,
